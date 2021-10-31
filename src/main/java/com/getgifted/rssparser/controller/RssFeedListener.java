@@ -34,6 +34,7 @@ public class RssFeedListener {
 	public IntegrationFlow feedData(@Value("${max.messages.per.poll}") int maxMessagesPerPoll, @Value("${fixed.rate}") int fixedRate) {
 		return IntegrationFlows
 				.from(Feed.inboundAdapter(this.feedResource, "channel"), e -> e.poller(
+						// setting polling interval and max messages per poll
 						Pollers.fixedRate(fixedRate).maxMessagesPerPoll(maxMessagesPerPoll)
 						))
 				.transform(extractDataFromFeed())
@@ -49,7 +50,7 @@ public class RssFeedListener {
 		return new AbstractPayloadTransformer<SyndEntry, Item>() {
 			@Override
 			protected Item transformPayload(SyndEntry payload) {
-				System.out.println("=====================transformPayload "+payload.getUri());
+				System.out.println("uuid "+payload.getUri());
 				Item item = new Item();
 				item.setTitle(payload.getTitle());
 				item.setDescription(payload.getDescription().getValue());

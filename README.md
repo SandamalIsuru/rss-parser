@@ -20,7 +20,10 @@ For building and running the application you need:
 
 Running the application locally has very simple steps.
 
-- First you need to clone the code from [here](url-test)
+- Run following command to clone the code
+	```shell
+		git clone https://github.com/SandamalIsuru/rss-parser.git
+	```
 - Import the project using eclipse
 - Open RssParserApplication.java file and run it as Java Application.
 

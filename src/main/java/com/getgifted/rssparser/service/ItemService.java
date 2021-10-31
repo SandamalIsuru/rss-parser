@@ -19,7 +19,9 @@ public class ItemService {
 	
 	public PaginatedResponse<Item> fetchItems (int page, int size, SORT_BY sort, DIRECTION direction) {
 		Page<Item> returnList = null;
+		// switch the flow to sort items based on the sort value
 		switch (sort.toString()) {
+			// each case checks whether items are going to be sorted by ascending or descending order
 		  	case "title":
 	  			if (direction.toString().equals("asc"))
 	  				returnList = itemRepository.findAllByOrderByTitleAsc(PageRequest.of(page, size));
