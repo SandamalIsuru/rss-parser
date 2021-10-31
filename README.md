@@ -29,5 +29,5 @@ Running the application locally has very simple steps.
 
 ## Running tests locally
 
-Right click on the RssParserTest.java file and run as JUnit Test
+Right click on the RssParserTest.java file under test folder and run as JUnit Test
 
