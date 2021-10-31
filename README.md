@@ -1,12 +1,12 @@
 # RSS Parser
 
-This is a spring Boot application that polls a RSS feed within a configured time period from a configured url, and stores any items or updates in H2 database. For each item, it will store guid, title, description, and publication date in the table. The numbers of items need to be stored within a poll also can be configured.
+This is a spring Boot application that polls RSS feeds within a configured time period from a configured url, and stores any items or updates in H2 database. For each item, it will store guid, title, description, and publication date in the table. The numbers of items need to be stored within a poll also can be configured.
 
 Following apis has exposed to retrieve stored data in the database.
 
-- Retrieving the 10 newest items
+- Retrieving the 10 newest items.
 	Example: GET http://localhost:8080/items
-- Paginated, with direction based on a given field
+- Paginated, with direction based on a given field.
 	Example: GET http://localhost:8080/items?page=1&size=2&sort=updated_date&direction=asc
 	
 ## Requirements
@@ -28,4 +28,6 @@ Running the application locally has very simple steps.
 - Open RssParserApplication.java file and run it as Java Application.
 
 ## Running tests locally
+
+Right click on the RssParserTest.java file and run as JUnit Test
 
