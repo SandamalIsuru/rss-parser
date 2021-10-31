@@ -21,7 +21,7 @@ public class ItemController {
 	
 	@GetMapping(path = "")
 	public PaginatedResponse<Item> fetch(
-			@RequestParam(defaultValue="${difault.page}") int page, @RequestParam(defaultValue="${difault.size}") int size,
+			@RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="10") int size,
 			@RequestParam(defaultValue="updated_date") SORT_BY sort, @RequestParam(defaultValue="asc") DIRECTION direction) {
 		return itemService.fetchItems(page, size, sort, direction);
 

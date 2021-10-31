@@ -17,24 +17,25 @@ public class ItemService {
 	@Autowired
     private ItemRepository itemRepository;
 	
-	@SuppressWarnings("unlikely-arg-type")
 	public PaginatedResponse<Item> fetchItems (int page, int size, SORT_BY sort, DIRECTION direction) {
 		Page<Item> returnList = null;
-		switch (sort) {
-		  	case title:
-	  			if (direction.equals("asc"))
+		switch (sort.toString()) {
+		  	case "title":
+	  			if (direction.toString().equals("asc"))
 	  				returnList = itemRepository.findAllByOrderByTitleAsc(PageRequest.of(page, size));
+	  				
 	  	  		else
 	  	  			returnList = itemRepository.findAllByOrderByTitleDesc(PageRequest.of(page, size));
+	  	  			
 		  		break;
-		  	case published_date:
-		  		if (direction.equals("asc"))
+		  	case "published_date":
+		  		if (direction.toString().equals("asc"))
 	  				returnList = itemRepository.findAllByOrderByPublishedDateAsc(PageRequest.of(page, size));
 	  	  		else
 	  	  			returnList = itemRepository.findAllByOrderByPublishedDateDesc(PageRequest.of(page, size));
 		  		break;
-		  	case updated_date:
-		  		if (direction.equals("asc"))
+		  	case "updated_date":
+		  		if (direction.toString().equals("asc"))
 	  				returnList = itemRepository.findAllByOrderByUpdatedDateAsc(PageRequest.of(page, size));
 	  	  		else
 	  	  			returnList = itemRepository.findAllByOrderByUpdatedDateDesc(PageRequest.of(page, size));
