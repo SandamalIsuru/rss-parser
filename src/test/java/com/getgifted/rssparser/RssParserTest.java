@@ -24,16 +24,32 @@ public class RssParserTest extends RssParserApplicationTests {
 
 	@Test
 	public void fetchLatestItems() throws Exception {
-		mockMvc.perform(get("/items")).andExpect(status().isOk())
-				.andExpect(content().contentType("application/json"));
-
+		mockMvc.perform(get("/items")).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void fetchDirectionBasedOnFieldItems() throws Exception {
-		mockMvc.perform(get("/items?page=1&size=10&sort=updated_date&direction=asc")).andExpect(status().isOk())
-				.andExpect(content().contentType("application/json"));
-
+		mockMvc.perform(get("/items?page=0&size=10&sort=updated_date&direction=asc")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void fetchItemsWithInvalidPage() throws Exception {
+		mockMvc.perform(get("/items?page=INVALID&size=10&sort=updated_date&direction=asc")).andExpect(status().isBadRequest());
+	}
+	
+	@Test
+	public void fetchItemsWithInvalidSize() throws Exception {
+		mockMvc.perform(get("/items?page=0&size=INVALID&sort=updated_date&direction=asc")).andExpect(status().isBadRequest());
+	}
+	
+	@Test
+	public void fetchItemsWithInvalidSort() throws Exception {
+		mockMvc.perform(get("/items?page=0&size=10&sort=INVALID&direction=asc")).andExpect(status().isBadRequest());
+	}
+	
+	@Test
+	public void fetchItemsWithInvalidDirection() throws Exception {
+		mockMvc.perform(get("/items?page=0&size=10&sort=updated_date&direction=INVALID")).andExpect(status().isBadRequest());
 	}
 
 }
